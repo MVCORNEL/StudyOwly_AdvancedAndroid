@@ -90,7 +90,6 @@ class TestQuiz {
         //TRY AGAIN QUIZ -> state NO_CHOICE_SELECTED
         quiz?.tryAgain()
         assertEquals( QuizState.NO_CHOICE_SELECTED, quiz?.state)
-
     }
 
 }
