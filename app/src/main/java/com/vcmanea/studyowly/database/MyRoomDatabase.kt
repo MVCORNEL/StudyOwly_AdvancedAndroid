@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-
 import com.vcmanea.studyowly.database.chapter.ChapterDao
 import com.vcmanea.studyowly.database.chapter.ChapterEntity
 import com.vcmanea.studyowly.database.lesson.quiz.ChoiceDao
@@ -15,6 +14,7 @@ import com.vcmanea.studyowly.database.lesson.theory.TheoryDao
 import com.vcmanea.studyowly.database.lesson.theory.TheoryEntity
 import com.vcmanea.studyowly.database.lesson.theory.TheoryPartDao
 import com.vcmanea.studyowly.database.lesson.theory.TheoryPartEntity
+import javax.inject.Inject
 
 @Database(entities = [ChapterEntity::class, TheoryEntity::class, TheoryPartEntity::class, QuizEntity::class, ChoiceEntity::class], version = 1,exportSchema = false)
 abstract class MyRoomDatabase : RoomDatabase() {

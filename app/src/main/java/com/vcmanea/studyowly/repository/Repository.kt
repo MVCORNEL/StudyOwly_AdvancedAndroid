@@ -22,8 +22,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
-object Repository: FirebaseDB.OnDownloadComplete  {
+class Repository @Inject constructor(): FirebaseDB.OnDownloadComplete  {
 
     val firebaseDB = FirebaseDB.getInstance(this)
     val database: MyRoomDatabase =MyRoomDatabase.getDatabase(MyApplication.context)
@@ -73,8 +74,7 @@ object Repository: FirebaseDB.OnDownloadComplete  {
 
     override fun onDownloadComplete() {
         //ADD EVERYTHING TO DATABASE WITHIN THE CALLBACK
-        Timber.d(
-            "onDownloadComplete data completely downloaded")
+        Timber.d("onDownloadComplete data completely downloaded")
         val chapters = firebaseDB.chapterList
         val theory = firebaseDB.theoryList
         val theoryPart = firebaseDB.theoryPartList
