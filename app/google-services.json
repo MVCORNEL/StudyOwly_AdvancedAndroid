@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "920061679517",
+    "firebase_url": "https://studyowly.firebaseio.com",
+    "project_id": "studyowly",
+    "storage_bucket": "studyowly.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920061679517:android:668a0535f39a4afb9a4174",
+        "android_client_info": {
+          "package_name": "com.vcmanea.studyowly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920061679517-ug8dffphim7sjdv4n0kg570cvr4stblj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB88S4r2NuTAEdQLzsjHExLIojMybY0ec8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920061679517-ug8dffphim7sjdv4n0kg570cvr4stblj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
