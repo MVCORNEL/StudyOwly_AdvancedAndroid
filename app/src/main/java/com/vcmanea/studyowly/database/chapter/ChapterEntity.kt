@@ -6,16 +6,13 @@ import androidx.room.PrimaryKey
 import com.vcmanea.studyowly.domain.chapter.Chapter
 import com.vcmanea.studyowly.firebase.dto.ChapterFb
 
-
 //CHAPTER
 @Entity
 data class ChapterEntity constructor(
-    @PrimaryKey
-    val id:Long,
-    @ColumnInfo(name="title")
-    val title:String,
-    @ColumnInfo(name="imgUrl")
-    val imgUrl: String
+    @PrimaryKey val id: Long,
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "imgUrl") val imgUrl: String,
+    @ColumnInfo(name = "isComplete") val isComplete: Int = Chapter.NOT_COMPLETED
 )
 
 fun List<ChapterEntity>.asDomainModel():List<Chapter>{
@@ -23,7 +20,8 @@ fun List<ChapterEntity>.asDomainModel():List<Chapter>{
         Chapter(
             id = it.id,
             title = it.title,
-            imgUrl=it.imgUrl
+            imgUrl = it.imgUrl,
+            isComplete = it.isComplete
         )
     }
 }

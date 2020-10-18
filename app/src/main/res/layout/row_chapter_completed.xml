@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="chapter"
+            type="com.vcmanea.studyowly.domain.chapter.Chapter" />
+        <variable
+            name="clickListener"
+            type="com.vcmanea.studyowly.ui.ChapterGridAdapter.ChapterListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/row_menu_learn_complete_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:onClick="@{() -> clickListener.onClick(chapter)}"
+            android:id="@+id/row_menu_learn_complete_framelayout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <!-- BIG CIRCLE -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/chapter_round"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/primaryLightColor"
+                app:cardCornerRadius="40dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+
+                    android:id="@+id/row_menu_learn_complete_imageView"
+                    android:layout_width="80dp"
+                    android:layout_height="81dp"
+                    android:padding="18dp"
+                    app:imgUrl="@{chapter.imgUrl}" />
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
+
+        <!-- TITLE -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/row_menu_learn_complete_title"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{chapter.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/row_menu_learn_complete_framelayout"
+            tools:text="Android" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

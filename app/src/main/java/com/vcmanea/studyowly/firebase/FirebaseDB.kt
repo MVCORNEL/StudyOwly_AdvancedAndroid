@@ -151,7 +151,6 @@ class FirebaseDB private constructor(val listener: OnDownloadComplete) {
                         //INCREMENT CHAPTER INDEX(ID)
                         chapterID++
                     }
-
                     listener.onDownloadComplete()
 
                 } catch (exp: Exception) {

@@ -1,6 +1,5 @@
 package com.vcmanea.studyowly.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.vcmanea.studyowly.application.MyApplication
@@ -24,14 +23,20 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class Repository @Inject constructor(): FirebaseDB.OnDownloadComplete  {
+class Repository @Inject constructor() : FirebaseDB.OnDownloadComplete {
 
     val firebaseDB = FirebaseDB.getInstance(this)
-    val database: MyRoomDatabase =MyRoomDatabase.getDatabase(MyApplication.context)
+    val database: MyRoomDatabase = MyRoomDatabase.getDatabase(MyApplication.context)
 
     //CHAPTERS -> LIVE DATA
     val _chapters: LiveData<List<Chapter>> = Transformations.map(database.chapterDao.getAll()) {
         it.asDomainModel()
+    }
+
+
+
+    suspend fun completeChapter(chapterID:Long){
+        database.chapterDao.updateChapter(chapterID)
     }
 
     suspend fun getTutorial(chapterID: Long): Tutorial {
@@ -63,12 +68,10 @@ class Repository @Inject constructor(): FirebaseDB.OnDownloadComplete  {
         tutorial.addOrderLessonsAndListener(theoryList)
         tutorial.addOrderLessonsAndListener(quizList)
 
-
         return tutorial
-
     }
 
-    suspend fun  refreshKotlinFirebase() {
+    fun refreshKotlinFirebase() {
         firebaseDB.downloadData()
     }
 

@@ -7,4 +7,46 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="primaryColor">#2e7d32</color>
+    <color name="primaryLightColor">#60ad5e</color>
+    <color name="primaryDarkColor">#005005</color>
+    <color name="secondaryColor">#7d2e79</color>
+    <color name="secondaryLightColor">#ae5ca8</color>
+    <color name="secondaryDarkColor">#4e004d</color>
+    <color name="primaryTextColor">#ffffff</color>
+
+
+    <color name="text_high_emphasis">#DE000000</color>
+    <color name="helper_text">#99000000</color>
+    <color name="disabled">#61000000</color>
+    <color name="disabled_stronger">#32000000</color>
+
+
+    <!-- google colors -->
+    <color name="textColor">#323335</color>
+
+
+    <!-- code colors -->
+    <color name="code_background">#f6f6f6</color>
+    <color name="code_blue">#5b87e7</color>
+    <color name="code_pink">#a86fce</color>
+    <color name="code_red">#de5280</color>
+    <!-- code colors -->
+    <color name="important_background">#e1bfda</color>
+    <color name="important_text">#7d2e79</color>
+
+
+    <!-- chapter circle disable -->
+    <color name="colorGrayDisabled">#66CCCCCC</color>
+    <color name="colorDisabledText">#61000000</color>
+
+
+
+
+
+
+
+
 </resources>

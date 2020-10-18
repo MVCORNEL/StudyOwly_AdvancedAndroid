@@ -18,4 +18,6 @@ interface ChapterDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg chapters: ChapterEntity)
 
+    @Query("UPDATE ChapterEntity SET isComplete=1 WHERE id= :chapterID")
+    fun updateChapter(chapterID:Long)
 }

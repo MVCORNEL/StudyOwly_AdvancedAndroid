@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
-
 @Dao
 interface ChoiceDao{
     //when we query room and return a list it will block the UI thread
