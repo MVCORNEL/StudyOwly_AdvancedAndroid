@@ -1,12 +1,12 @@
-package com.vcmanea.studyowly.ui
+package com.vcmanea.studyowly.ui.chapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vcmanea.studyowly.databinding.RowChapterCompletedBinding
 import com.vcmanea.studyowly.databinding.RowChapterNotCompletedBinding
 import com.vcmanea.studyowly.domain.chapter.Chapter
+import java.lang.IllegalArgumentException
 
 
 private const val CHAPTER_COMPLETED_TYPE = 0
@@ -37,7 +37,7 @@ class ChapterGridAdapter(private val chpaterListener: ChapterListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             CHAPTER_COMPLETED_TYPE -> ChapterCompleteHolder.from(parent)
-            CHAPTER_DUE_TYPE -> ChapterDueHolder.from(parent)
+            CHAPTER_DUE_TYPE -> ChapterIncomplete.from(parent)
             else -> throw ClassCastException("Unknown viewType $viewType")
         }
     }
@@ -46,7 +46,7 @@ class ChapterGridAdapter(private val chpaterListener: ChapterListener) :
         val learnChapter = chapterList.get(position)
         when (holder) {
 
-            is ChapterDueHolder ->
+            is ChapterIncomplete ->
                 holder.bindTo(learnChapter, chpaterListener)
 
 
@@ -55,21 +55,20 @@ class ChapterGridAdapter(private val chpaterListener: ChapterListener) :
 
 
             else ->{
-                Log.d("Unknown viewType", "error")
-
+               throw IllegalArgumentException("Wrong ChapterType")
             }
         }
     }
 
     //HOLDER NOT_COMPLETED
-    class ChapterDueHolder(private var binding: RowChapterNotCompletedBinding) :
+    class ChapterIncomplete(private var binding: RowChapterNotCompletedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
-            fun from(parent: ViewGroup): ChapterDueHolder {
+            fun from(parent: ViewGroup): ChapterIncomplete {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = RowChapterNotCompletedBinding.inflate(layoutInflater)
-                return ChapterDueHolder(binding)
+                return ChapterIncomplete(binding)
             }
         }
 
@@ -103,10 +102,6 @@ class ChapterGridAdapter(private val chpaterListener: ChapterListener) :
             binding.executePendingBindings()
         }
     }
-
-
-
-
     class ChapterListener(val clickListener: (chapterId: Long) -> Unit) {
         fun onClick(chapterDetails: Chapter) = clickListener(chapterDetails.id)
     }

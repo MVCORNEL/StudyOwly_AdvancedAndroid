@@ -1,4 +1,4 @@
-package com.vcmanea.studyowly.ui
+package com.vcmanea.studyowly.ui.chapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.vcmanea.studyowly.databinding.FragmentChapterBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 const val CHAPTER_ARG = "CHAPTER_ARG"
 @AndroidEntryPoint
@@ -36,23 +37,24 @@ class ChapterFragment : Fragment() {
             }
         }
 
-        //NAVIGATION
-        //adapter with onClickListener Listener
+
+        //ADAPTER with onClickListener Listener
         val adapter = ChapterGridAdapter(ChapterGridAdapter.ChapterListener {
             viewModel.displayTutorial(it)
             viewModel.updateChapter(it)
         })
 
-//        //observe navigate
-//        viewModel.navigateToTutorial.observe(viewLifecycleOwner, Observer<Long> {
-//            if(null!=it){
-//                val action=ChapterFragmentDirections.actionNavigationFragmentToTutorialFragment(it)
-//                findNavController().navigate(action)
-//                //this is a must if not you won't be able to return back, by pressing back button because the value will not be null
-//                viewModel.displayTutorialComplete()
-//            }
-//
-//        })
+        //NAVIGATION
+        //observe navigate
+        viewModel.navigateToTutorial.observe(viewLifecycleOwner, Observer<Long> {
+            if(null!=it){
+                val action=ChapterFragmentDirections.actionNavigationFragmentToTutorialFragment(it)
+                findNavController().navigate(action)
+                //this is a must if not you won't be able to return back, by pressing back button because the value will not be null
+                viewModel.displayTutorialComplete()
+            }
+
+        })
 
 
         recyclerView.layoutManager=gridLayoutManager

@@ -7,7 +7,23 @@
 
     <fragment
         android:id="@+id/chapterFragment"
-        android:name="com.vcmanea.studyowly.ui.ChapterFragment"
+        android:name="com.vcmanea.studyowly.ui.chapter.ChapterFragment"
         android:label="ChapterFragment"
-        tools:layout="@layout/fragment_chapter" />
+        tools:layout="@layout/fragment_chapter">
+
+        <action
+            android:id="@+id/action_navigation_Fragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/tutorialFragment"
+        android:name="com.vcmanea.studyowly.ui.tutorial.TutorialFragment"
+        android:label="TutorialFragment"
+        tools:layout="@layout/fragment_tutorial">
+        <argument
+            android:name="tutorialID"
+            app:argType="long" />
+    </fragment>
 </navigation>

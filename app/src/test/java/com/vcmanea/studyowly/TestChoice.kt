@@ -1,4 +1,4 @@
-package com.vcmanea.studowly
+package com.vcmanea.studyowly
 
 import com.vcmanea.studyowly.domain.tutorial.quiz.Quiz
 import org.junit.jupiter.api.*

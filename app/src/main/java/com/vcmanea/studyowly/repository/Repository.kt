@@ -29,13 +29,13 @@ class Repository @Inject constructor() : FirebaseDB.OnDownloadComplete {
     val database: MyRoomDatabase = MyRoomDatabase.getDatabase(MyApplication.context)
 
     //CHAPTERS -> LIVE DATA
-    val _chapters: LiveData<List<Chapter>> = Transformations.map(database.chapterDao.getAll()) {
+    val chaptersLD: LiveData<List<Chapter>> = Transformations.map(database.chapterDao.getAll()) {
         it.asDomainModel()
     }
 
 
 
-    suspend fun completeChapter(chapterID:Long){
+     fun completeChapter(chapterID:Long){
         database.chapterDao.updateChapter(chapterID)
     }
 

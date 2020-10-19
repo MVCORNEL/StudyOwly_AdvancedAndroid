@@ -1,11 +1,11 @@
-package com.vcmanea.studyowly.ui
+package com.vcmanea.studyowly.ui.chapter
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.vcmanea.studyowly.repository.Repository
 import kotlinx.coroutines.*
 
-class ChapterViewModel @ViewModelInject constructor(private val repository: Repository) : ViewModel() {
+class ChapterViewModel @ViewModelInject constructor (private val repository: Repository) : ViewModel() {
 
     init {
         viewModelScope.launch {
@@ -15,10 +15,7 @@ class ChapterViewModel @ViewModelInject constructor(private val repository: Repo
         }
     }
 
-
-
-
-    var chapterList= repository._chapters
+    var chapterList= repository.chaptersLD
 
     //*****************************************NAVIGATE****************************************************//
     //Navigate for Course to Chapter

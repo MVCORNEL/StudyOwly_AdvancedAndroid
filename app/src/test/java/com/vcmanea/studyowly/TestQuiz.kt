@@ -1,4 +1,4 @@
-package com.vcmanea.studowly
+package com.vcmanea.studyowly
 
 import com.vcmanea.studyowly.domain.tutorial.quiz.*
 import org.junit.jupiter.api.*
@@ -69,14 +69,14 @@ class TestQuiz {
         assertNotEquals( QuizState.CORRECT_ANSWERED, quiz?.state)
 
         //SELECT THE CORRECT CHOICE -> state CHOICE_SELECTED
-        quiz?.selectChoice(CHOICE_LETTER.A)
+        quiz?.selectChoice(ChoiceLetter.A)
         //CHECK THE QUIZ -> state CORRECT ANSWERED
         quiz?.checkAnswers()
         assertEquals( QuizState.CORRECT_ANSWERED, quiz?.state)
 
 
         //SELECT THE WRONG CHOICE -> state CHOICE_SELECTED
-        quiz?.selectChoice(CHOICE_LETTER.B)
+        quiz?.selectChoice(ChoiceLetter.B)
         //CHECK THE QUIZ -> state CORRECT ANSWERED
         quiz?.checkAnswers()
         assertEquals( QuizState.WRONG_ANSWERED, quiz?.state)
@@ -85,7 +85,7 @@ class TestQuiz {
     @Test
     fun tryAgain() {
         //SELECT THE CORRECT CHOICE -> state CHOICE_SELECTED
-        quiz?.selectChoice(CHOICE_LETTER.A)
+        quiz?.selectChoice(ChoiceLetter.A)
         assertEquals( QuizState.CHOICE_SELECTED, quiz?.state)
         //TRY AGAIN QUIZ -> state NO_CHOICE_SELECTED
         quiz?.tryAgain()

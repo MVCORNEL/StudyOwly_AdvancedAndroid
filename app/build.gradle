@@ -5,6 +5,8 @@ plugins {
     id 'de.mannodermaus.android-junit5'
     id 'com.google.gms.google-services'
     id 'dagger.hilt.android.plugin'
+    id "androidx.navigation.safeargs.kotlin"
+
 }
 
 android {
@@ -104,5 +106,9 @@ dependencies {
 
     //PICASSO
     implementation 'com.squareup.picasso:picasso:2.71828'
+    
+    //VIEWPAGER
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+
 
 }

@@ -1,4 +1,4 @@
-package com.vcmanea.studyowly.ui
+package com.vcmanea.studyowly.ui.chapter
 
 import android.util.Log
 import android.widget.ImageView

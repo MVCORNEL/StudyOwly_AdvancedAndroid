@@ -1,4 +1,4 @@
-package com.vcmanea.studowly
+package com.vcmanea.studyowly
 
 import com.vcmanea.studyowly.domain.tutorial.Lesson
 import com.vcmanea.studyowly.domain.tutorial.Tutorial

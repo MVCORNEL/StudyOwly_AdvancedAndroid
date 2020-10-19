@@ -1,6 +1,6 @@
-package com.vcmanea.studowly
+package com.vcmanea.studyowly
 
-import com.vcmanea.studyowly.domain.tutorial.quiz.CHOICE_LETTER
+import com.vcmanea.studyowly.domain.tutorial.quiz.ChoiceLetter
 import com.vcmanea.studyowly.domain.tutorial.quiz.Quiz
 import com.vcmanea.studyowly.domain.tutorial.quiz.QuizState
 import com.vcmanea.studyowly.domain.tutorial.quiz.SingleChoiceQuiz
@@ -49,24 +49,24 @@ class TestSingleChoiceQuiz {
         //ALL CHOICES ARE DESELECTED
         assertEquals(QuizState.NO_CHOICE_SELECTED,quiz?.state)
         //SELECT FIRST CHOICE -> QUIZ BECOMES SELECTED
-        quiz?.selectChoice(CHOICE_LETTER.A)
+        quiz?.selectChoice(ChoiceLetter.A)
         assertEquals(QuizState.CHOICE_SELECTED,quiz?.state)
         //DESELECT FIRST CHOICE -> QUIZ BECOMES DESELECTED
-        quiz?.selectChoice(CHOICE_LETTER.A)
+        quiz?.selectChoice(ChoiceLetter.A)
         assertEquals(QuizState.NO_CHOICE_SELECTED,quiz?.state)
 
         //SELECT FIRST(A) CHOICE. A->T, B->F, C->F, D-F
-        quiz?.selectChoice(CHOICE_LETTER.A)
-        assertEquals(quiz?.choicesMap?.get(CHOICE_LETTER.A)?.isSelected,true)
-        assertNotEquals(quiz?.choicesMap?.get(CHOICE_LETTER.B)?.isSelected,true)
-        assertNotEquals(quiz?.choicesMap?.get(CHOICE_LETTER.C)?.isSelected,true)
-        assertNotEquals(quiz?.choicesMap?.get(CHOICE_LETTER.D)?.isSelected,true)
+        quiz?.selectChoice(ChoiceLetter.A)
+        assertEquals(quiz?.choicesMap?.get(ChoiceLetter.A)?.isSelected,true)
+        assertNotEquals(quiz?.choicesMap?.get(ChoiceLetter.B)?.isSelected,true)
+        assertNotEquals(quiz?.choicesMap?.get(ChoiceLetter.C)?.isSelected,true)
+        assertNotEquals(quiz?.choicesMap?.get(ChoiceLetter.D)?.isSelected,true)
 
-        quiz?.selectChoice(CHOICE_LETTER.B)
+        quiz?.selectChoice(ChoiceLetter.B)
         //SELECT SECOND(B) CHOICE. A->F, B->T, C->F, D-F
-        assertNotEquals(quiz?.choicesMap?.get(CHOICE_LETTER.A)?.isSelected,true)
-        assertEquals(quiz?.choicesMap?.get(CHOICE_LETTER.B)?.isSelected,true)
-        assertNotEquals(quiz?.choicesMap?.get(CHOICE_LETTER.C)?.isSelected,true)
-        assertNotEquals(quiz?.choicesMap?.get(CHOICE_LETTER.D)?.isSelected,true)
+        assertNotEquals(quiz?.choicesMap?.get(ChoiceLetter.A)?.isSelected,true)
+        assertEquals(quiz?.choicesMap?.get(ChoiceLetter.B)?.isSelected,true)
+        assertNotEquals(quiz?.choicesMap?.get(ChoiceLetter.C)?.isSelected,true)
+        assertNotEquals(quiz?.choicesMap?.get(ChoiceLetter.D)?.isSelected,true)
     }
 }

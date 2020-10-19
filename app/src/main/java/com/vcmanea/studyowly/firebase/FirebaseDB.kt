@@ -33,11 +33,11 @@ class FirebaseDB private constructor(val listener: OnDownloadComplete) {
         fun onDownloadComplete()
     }
 
-    //RealtimeDatabase
+    //REALTIME DATABASE
     private val mDatabase = FirebaseDatabase.getInstance()
     private val mDatabaseRef = mDatabase.reference
 
-    //Chapter
+    //CHAPTER
     val chapterList = ArrayList<ChapterFb>()
 
     //THEORY
@@ -154,7 +154,7 @@ class FirebaseDB private constructor(val listener: OnDownloadComplete) {
                     listener.onDownloadComplete()
 
                 } catch (exp: Exception) {
-                    Timber.e("Failed to theory snapshot. ${exp}")
+                    Timber.e("Failed to theory snapshot. $exp")
                 }
             }
         })

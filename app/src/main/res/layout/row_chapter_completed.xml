@@ -9,7 +9,7 @@
             type="com.vcmanea.studyowly.domain.chapter.Chapter" />
         <variable
             name="clickListener"
-            type="com.vcmanea.studyowly.ui.ChapterGridAdapter.ChapterListener" />
+            type="com.vcmanea.studyowly.ui.chapter.ChapterGridAdapter.ChapterListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

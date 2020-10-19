@@ -4,7 +4,7 @@ package com.vcmanea.studyowly.domain.tutorial.quiz
 
 import com.vcmanea.studyowly.domain.tutorial.Lesson
 
-object CHOICE_LETTER {
+object ChoiceLetter {
     const val A = "A"
     const val B = "B"
     const val C = "C"
@@ -73,10 +73,10 @@ abstract class Quiz(question:String,id: Long, chapter_id: Long) : Lesson(id, cha
      fun addChoices(choices: List<Choice>) {
         for (choice in choices) {
             when (choicesMap.size) {
-                0 -> choicesMap[CHOICE_LETTER.A] = choice
-                1 -> choicesMap[CHOICE_LETTER.B] = choice
-                2 -> choicesMap[CHOICE_LETTER.C] = choice
-                3 -> choicesMap[CHOICE_LETTER.D] = choice
+                0 -> choicesMap[ChoiceLetter.A] = choice
+                1 -> choicesMap[ChoiceLetter.B] = choice
+                2 -> choicesMap[ChoiceLetter.C] = choice
+                3 -> choicesMap[ChoiceLetter.D] = choice
                 else -> {
                    throw ChoicesRangeException("A quiz should have at the most 4 CHOICES")
                 }
