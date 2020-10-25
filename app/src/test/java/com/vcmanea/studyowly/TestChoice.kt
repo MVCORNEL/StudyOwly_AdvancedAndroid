@@ -44,4 +44,12 @@ class TestChoice {
         choice3?.isSelected=false
         assertEquals(false, choice3?.isCorrectSelected())
     }
+
+    @Test
+    fun isCorrectAndSelected() {
+        assertEquals(false, choice?.isCorrectAndSelected())
+        choice3?.isSelected=true
+        assertEquals(true, choice3?.isCorrectAndSelected())
+
+    }
 }

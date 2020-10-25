@@ -2,7 +2,7 @@ package com.vcmanea.studyowly.domain.tutorial
 
 open class Lesson(val id: Long, val chapterId: Long) : Comparable<Lesson> {
 
-    var isCompleted = false
+    open var isCompleted = false
     var listener: OnLessonCompleted? = null
 
     fun setOnCompleteListener(onLessonCompleted: OnLessonCompleted) {

@@ -6,9 +6,13 @@ import com.vcmanea.studyowly.domain.tutorial.Lesson
 
 class Theory(id:Long=0,chapter_id:Long=0) : Lesson(id,chapter_id){
 
-    val theoryTheoryParts: ArrayList<TheoryPart> = ArrayList()
+    override var isCompleted: Boolean=true
+
+
+    val theoryParts: ArrayList<TheoryPart> = ArrayList()
     fun addPartList(theoryPartList: List<TheoryPart>) {
-        theoryTheoryParts.addAll(theoryPartList)
+        theoryParts.clear()
+        theoryParts.addAll(theoryPartList)
     }
 
 

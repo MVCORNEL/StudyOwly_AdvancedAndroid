@@ -22,7 +22,7 @@ enum class QuizState {
     NO_CHOICE_SELECTED, CHOICE_SELECTED, WRONG_ANSWERED, CORRECT_ANSWERED
 }
 
-abstract class Quiz(question:String,id: Long, chapter_id: Long) : Lesson(id, chapter_id) {
+abstract class Quiz(var question:String,id: Long, chapter_id: Long) : Lesson(id, chapter_id) {
 
     var state = QuizState.NO_CHOICE_SELECTED
     val choicesMap: HashMap<String, Choice> = HashMap()
@@ -66,6 +66,7 @@ abstract class Quiz(question:String,id: Long, chapter_id: Long) : Lesson(id, cha
                 return@checkAnswers
             }
         }
+        isCompleted=true
         state = QuizState.CORRECT_ANSWERED
     }
 
@@ -87,9 +88,21 @@ abstract class Quiz(question:String,id: Long, chapter_id: Long) : Lesson(id, cha
 
     class Choice(val choice: String, val isCorrect: Boolean, val id: Long = 0, val quiz_id: Long = 0) {
         var isSelected: Boolean = false
-
+        /**
+         * @return [Boolean] true if and only if the choice is selected and is correct, and false otherwise
+         */
         fun isCorrectSelected():Boolean{
             return isCorrect == isSelected
+        }
+
+        /**
+         * @return [Boolean] true if the choice is isCorrect state and isSelected state are the same, false otherwise
+         */
+        fun isCorrectAndSelected(): Boolean {
+            if (isSelected && isCorrect) {
+                return true
+            }
+            return false
         }
     }
 

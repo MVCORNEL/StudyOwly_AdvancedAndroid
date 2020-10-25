@@ -68,6 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:getLessonsList="@{viewmodel.lessonsList}"
             app:layout_constraintTop_toBottomOf="@+id/tutorial_progress_layout"
             />
 

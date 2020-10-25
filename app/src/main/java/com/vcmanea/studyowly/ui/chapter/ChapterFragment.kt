@@ -46,16 +46,14 @@ class ChapterFragment : Fragment() {
 
         //NAVIGATION
         //observe navigate
-        viewModel.navigateToTutorial.observe(viewLifecycleOwner, Observer<Long> {
+        viewModel.navigateToTutorial.observe(viewLifecycleOwner, {
             if(null!=it){
                 val action=ChapterFragmentDirections.actionNavigationFragmentToTutorialFragment(it)
                 findNavController().navigate(action)
                 //this is a must if not you won't be able to return back, by pressing back button because the value will not be null
                 viewModel.displayTutorialComplete()
             }
-
         })
-
 
         recyclerView.layoutManager=gridLayoutManager
         recyclerView.adapter = adapter
@@ -67,7 +65,6 @@ class ChapterFragment : Fragment() {
 
     companion object {
         fun newInstance(position: Int) = ChapterFragment().apply {
-
             arguments = Bundle().apply { putInt(CHAPTER_ARG, position) }
         }
     }

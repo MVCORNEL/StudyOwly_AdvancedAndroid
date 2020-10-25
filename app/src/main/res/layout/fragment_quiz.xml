@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.ArrayList" />
+
+        <variable
+            name="viewmodel"
+            type="com.vcmanea.studyowly.ui.quiz.QuizViewModel" />
+
+        <variable
+            name="choiceLetter"
+            type="com.vcmanea.studyowly.domain.tutorial.quiz.ChoiceLetter" />
+
+        <variable
+            name="handler"
+            type="com.vcmanea.studyowly.ui.quiz.SelectHandler" />
+
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/quiz_btn_skip"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> viewmodel.nextPage()}"
+                android:text="@string/skip"
+                app:bindSkipBtnState="@{viewmodel.quiz.state}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/quiz_btn_check" />
+
+            <TextView
+                android:id="@+id/quiz_question"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="16dp"
+                android:text="@{viewmodel.quiz.question}"
+                app:layout_constraintBottom_toTopOf="@+id/quiz_tip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.7"
+                tools:text="What is the difference between a small a big small cat" />
+
+            <TextView
+                android:id="@+id/quiz_tip"
+                style="@style/TextAppearance.MaterialComponents.Overline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="6dp"
+                android:text="@string/quiz_chose_the_answer"
+                android:textAllCaps="true"
+                android:textColor="@color/helper_text"
+                app:layout_constraintBottom_toTopOf="@+id/quizA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckedTextView
+                android:id="@+id/quizA"
+                style="@style/TextAppearance.MaterialComponents.Body2.QuizCheckableStyle"
+                android:onClick="@{(view)->handler.onSelected(view)}"
+                android:tag="@{choiceLetter.A}"
+                app:disableEnableChoice="@{viewmodel.quiz.state}"
+                app:layout_constraintBottom_toTopOf="@+id/quizB"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:setChoice="@{viewmodel.quiz.choicesMap}"
+                tools:text="This is the first question answered" />
+
+            <CheckedTextView
+                android:id="@+id/quizB"
+                style="@style/TextAppearance.MaterialComponents.Body2.QuizCheckableStyle"
+                android:onClick="@{(view)->handler.onSelected(view)}"
+                android:tag="@{choiceLetter.B}"
+                app:disableEnableChoice="@{viewmodel.quiz.state}"
+                app:layout_constraintBottom_toTopOf="@+id/quizC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:setChoice="@{viewmodel.quiz.choicesMap}"
+                tools:text="This is the second question answered" />
+
+            <CheckedTextView
+                android:id="@+id/quizC"
+                style="@style/TextAppearance.MaterialComponents.Body2.QuizCheckableStyle"
+                android:onClick="@{(view)->handler.onSelected(view)}"
+                android:tag="@{choiceLetter.C}"
+                android:textColor="@drawable/quiz_text_color"
+                app:disableEnableChoice="@{viewmodel.quiz.state}"
+                app:layout_constraintBottom_toTopOf="@+id/quizD"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:setChoice="@{viewmodel.quiz.choicesMap}"
+                tools:text="This is the third question answered" />
+
+            <CheckedTextView
+                android:id="@+id/quizD"
+                style="@style/TextAppearance.MaterialComponents.Body2.QuizCheckableStyle"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{(view)->handler.onSelected(view)}"
+                android:tag="@{choiceLetter.D}"
+                android:textColor="@drawable/quiz_text_color"
+                app:disableEnableChoice="@{viewmodel.quiz.state}"
+                app:layout_constraintBottom_toTopOf="@+id/quiz_btn_skip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:setChoice="@{viewmodel.quiz.choicesMap}"
+                tools:text="This is the fourth question asked" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/quiz_btn_check"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{() -> viewmodel.onQuizButtonPressed()}"
+                android:text="@string/check"
+                app:bindCheckBtnState="@{viewmodel.quiz.state}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/quiz_motion_correct"
+                style="@style/TextAppearance.MaterialComponents.Overline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/well_done"
+                android:textColor="@color/primaryColor"
+                android:textSize="22sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/quiz_btn_skip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/quizD"
+                app:layout_constraintVertical_bias="0.687"
+                app:wellDonePopUp="@{viewmodel.quiz.state}" />
+
+            <TextView
+                android:id="@+id/quiz_motion_wrong"
+                style="@style/TextAppearance.MaterialComponents.Overline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/wrong"
+                android:textColor="#B00020"
+                android:textSize="22sp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/quiz_btn_skip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/quiz_btn_skip"
+                app:tryAgainPopUp="@{viewmodel.quiz.state}" />
+
+            <TextView
+                android:id="@+id/quiz_state"
+                android:layout_width="57dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/quiz_question"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

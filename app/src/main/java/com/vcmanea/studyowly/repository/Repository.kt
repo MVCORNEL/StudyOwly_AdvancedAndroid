@@ -1,6 +1,7 @@
 package com.vcmanea.studyowly.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.vcmanea.studyowly.application.MyApplication
 import com.vcmanea.studyowly.database.MyRoomDatabase
@@ -22,7 +23,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class Repository @Inject constructor() : FirebaseDB.OnDownloadComplete {
 
     val firebaseDB = FirebaseDB.getInstance(this)
@@ -33,14 +36,28 @@ class Repository @Inject constructor() : FirebaseDB.OnDownloadComplete {
         it.asDomainModel()
     }
 
-
+    //TUTORIAL -> MUTABLE LIVE DATA
+    val tutorial= MutableLiveData<Tutorial?>()
+    //PROGRESS BAR
+    var progressMax = Transformations.distinctUntilChanged(Transformations.map(tutorial) {
+        it?.lessonsListSize
+    })
+    var currentProgress = Transformations.distinctUntilChanged(Transformations.map(tutorial) {
+        it?.progressBarIndex
+    })
+    //PAGER
+    //Lesson List -> Pager
+    var lessonsList = Transformations.distinctUntilChanged(Transformations.map(tutorial) {
+        it?.lessonList
+    })
 
      fun completeChapter(chapterID:Long){
         database.chapterDao.updateChapter(chapterID)
     }
 
-    suspend fun getTutorial(chapterID: Long): Tutorial {
-        //CREATE A TUTORIAL
+    //TUTORIAL
+    suspend fun setTutorial(chapterID: Long){
+    //CREATE A TUTORIAL
         val tutorial = Tutorial()
         //THEORY LIST -> based on chapter id
         val theoryList: List<Theory> = database.theoryDao.loadQuizByID(chapterID).asDomainModel()
@@ -64,13 +81,14 @@ class Repository @Inject constructor() : FirebaseDB.OnDownloadComplete {
             quiz.addChoices(quizChoice)
 
         }
-        Timber.d(" parts size ${theoryList.get(1).theoryTheoryParts.size} ")
+        Timber.d(" parts size ${theoryList.get(1).theoryParts.size} ")
         tutorial.addOrderLessonsAndListener(theoryList)
         tutorial.addOrderLessonsAndListener(quizList)
 
-        return tutorial
+        this.tutorial.postValue(tutorial)
     }
 
+    //*****************************************************REFRESH COURSE DATA************************************************//
     fun refreshKotlinFirebase() {
         firebaseDB.downloadData()
     }

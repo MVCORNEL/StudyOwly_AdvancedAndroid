@@ -64,25 +64,5 @@ class TestTutorial {
         assertEquals(4,tutorial?.lessonsListSize)
     }
 
-    @Test
-    fun updateUnlockedElements(){
-        assertEquals(false,tutorial?.isCompleted)
-        assertEquals(1,tutorial?.unlockedElements)
 
-        tutorial?.lessonList?.get(0)?.completeLesson()
-        assertEquals(2,tutorial?.unlockedElements)
-        assertEquals(false,tutorial?.isCompleted)
-
-        tutorial?.lessonList?.get(1)?.completeLesson()
-        assertEquals(3,tutorial?.unlockedElements)
-        assertEquals(false,tutorial?.isCompleted)
-
-        tutorial?.lessonList?.get(2)?.completeLesson()
-        assertEquals(4,tutorial?.unlockedElements)
-        assertEquals(false,tutorial?.isCompleted)
-
-        tutorial?.lessonList?.get(3)?.completeLesson()
-        assertEquals(4,tutorial?.unlockedElements)
-        assertEquals(true,tutorial?.isCompleted)
-    }
 }
